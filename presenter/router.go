@@ -1,7 +1,6 @@
 package presenter
 
 import (
-	"bodybuilding/src/lib/common"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	socketio "github.com/googollee/go-socket.io"
@@ -37,18 +36,13 @@ func SetupSocket() *socketio.Server {
 		fmt.Println("connected:", s.ID())
 		return nil
 	})
-	server.OnEvent("/", "sign-in", func(s socketio.Conn, msg common.JSON) {
-		fmt.Println("notice:", msg)
-		//s.Emit("reply", "have "+msg)
-	})
+	server.OnEvent("/", "sign-in", login)
 	server.OnError("/", func(s socketio.Conn, e error) {
 		fmt.Println("meet error:", e)
 	})
 	server.OnDisconnect("/", func(s socketio.Conn, reason string) {
 		fmt.Println("closed", reason)
 	})
-	go server.Serve()
-	defer server.Close()
 
 	return server
 }
