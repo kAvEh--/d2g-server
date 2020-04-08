@@ -1,7 +1,11 @@
 package presenter
 
 import (
+	"bodybuilding/src/lib/common"
+	"fmt"
 	"github.com/gin-gonic/gin"
+	socketio "github.com/googollee/go-socket.io"
+	"log"
 )
 
 func SetupRouter() *gin.Engine {
@@ -21,4 +25,30 @@ func SetupRouter() *gin.Engine {
 	}
 
 	return r
+}
+
+func SetupSocket() *socketio.Server {
+	server, err := socketio.NewServer(nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	server.OnConnect("/", func(s socketio.Conn) error {
+		s.SetContext("")
+		fmt.Println("connected:", s.ID())
+		return nil
+	})
+	server.OnEvent("/", "sign-in", func(s socketio.Conn, msg common.JSON) {
+		fmt.Println("notice:", msg)
+		//s.Emit("reply", "have "+msg)
+	})
+	server.OnError("/", func(s socketio.Conn, e error) {
+		fmt.Println("meet error:", e)
+	})
+	server.OnDisconnect("/", func(s socketio.Conn, reason string) {
+		fmt.Println("closed", reason)
+	})
+	go server.Serve()
+	defer server.Close()
+
+	return server
 }
