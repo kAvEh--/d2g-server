@@ -31,6 +31,7 @@ type Player struct {
 	Level       *Level       `json:"level"`
 	Achievement *Achievement `json:"achievements"`
 	Players     *[]Member    `json:"players"`
+	Shirts      *[]Shirt     `json:"shirts"`
 }
 
 type Level struct {
@@ -56,4 +57,9 @@ type Member struct {
 	Stamina  int `json:"stamina"`
 	Size     int `json:"size"`
 	Speed    int `json:"speed"`
+}
+
+type Shirt struct {
+	ShirtID  int  `json:"shirt_id"`
+	HasShirt bool `json:"has_shirt"`
 }

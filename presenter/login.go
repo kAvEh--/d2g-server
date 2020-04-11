@@ -64,6 +64,13 @@ func login(s socketio.Conn, msg common.JSON) {
 	var tmp []model.Member
 	tmp = append(tmp, m1, m2, m3, m4, m5)
 	player.Players = &tmp
+	shirts := make([]model.Shirt, 24)
+	for i, shirt := range shirts {
+		shirt.ShirtID = i
+		shirt.HasShirt = i%4 == 0
+		shirts[i] = shirt
+	}
+	player.Shirts = &shirts
 
 	user.Player = &player
 	//user.Player.Level.Level = 6
