@@ -20,6 +20,7 @@ type Player struct {
 	WinRate     float32      `json:"winRate"`
 	CleanSheet  int          `json:"cleanSheet"`
 	Formation   int          `json:"formation"`
+	Lineup      string       `json:"lineup"`
 	Shirt       int          `json:"shirt"`
 	Name        string       `json:"nickname"`
 	AvatarID    int          `json:"avatarId"`
@@ -30,7 +31,6 @@ type Player struct {
 	Level       *Level       `json:"level"`
 	Achievement *Achievement `json:"achievements"`
 	Players     *[]Member    `json:"players"`
-	Lineup      string       `json:"lineup"`
 }
 
 type Level struct {
@@ -52,6 +52,7 @@ type Achievement struct {
 type Member struct {
 	IDv2
 	PlayerID int `json:"player_id"`
+	ShirtNum int `json:"shirt_num"`
 	Stamina  int `json:"stamina"`
 	Size     int `json:"size"`
 	Speed    int `json:"speed"`
