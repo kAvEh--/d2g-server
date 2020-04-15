@@ -37,6 +37,7 @@ func SetupSocket() *socketio.Server {
 		return nil
 	})
 	server.OnEvent("/", "sign-in", login)
+	server.OnEvent("/", "find-match", findMatch)
 	server.OnError("/", func(s socketio.Conn, e error) {
 		fmt.Println("meet error:", e)
 	})

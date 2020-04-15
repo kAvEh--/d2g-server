@@ -9,7 +9,7 @@ import (
 )
 
 func login(s socketio.Conn, msg common.JSON) {
-	fmt.Println("-------->>", msg)
+	fmt.Println("Login-------->>", msg)
 	var user model.User
 	var player model.Player
 	//user.ID = uuid.UUID{}
@@ -23,7 +23,7 @@ func login(s socketio.Conn, msg common.JSON) {
 	player.Lineup = "B"
 	player.Shirt = 1
 	player.Name = "kAvEh"
-	player.AvatarID = 3
+	player.AvatarID = 5
 	player.UserName = "kAvEh"
 	player.Goals = 100
 	player.WinInRaw = 5
