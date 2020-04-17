@@ -26,11 +26,14 @@ func SetupRouter() *gin.Engine {
 	return r
 }
 
+var D2GServer *socketio.Server
+
 func SetupSocket() *socketio.Server {
 	server, err := socketio.NewServer(nil)
 	if err != nil {
 		log.Fatal(err)
 	}
+	D2GServer = server
 	server.OnConnect("/", func(s socketio.Conn) error {
 		s.SetContext("")
 		fmt.Println("connected:", s.ID())
