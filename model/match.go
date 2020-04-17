@@ -5,6 +5,8 @@ import uuid "github.com/satori/go.uuid"
 type Room struct {
 	IDv2
 	RoomNum          int       `json:"room_num"`
+	Turn             uuid.UUID `json:"turn"`
+	Level            int       `json:"level"`
 	P1ID             uuid.UUID `json:"p1ID"`
 	P2ID             uuid.UUID `json:"p2ID"`
 	P1Name           string    `json:"p1_name"`
@@ -18,8 +20,9 @@ type Room struct {
 	P1Avatar         int       `json:"p1_avatar"`
 	P2Avatar         int       `json:"p2_avatar"`
 	P1WinRate        float32   `json:"p1_win_rate"`
+	P2WinRate        float32   `json:"p2_win_rate"`
 	P1Formation      int       `json:"p1_formation"`
-	Level            int       `json:"level"`
+	P2Formation      int       `json:"p2_formation"`
 	LastTouch        int       `json:"last_touch"`
 	P1Goals          int       `json:"p1_goals"`
 	P2Goals          int       `json:"p2_goals"`
