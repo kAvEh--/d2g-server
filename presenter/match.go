@@ -19,6 +19,9 @@ func findMatch(s socketio.Conn, msg common.JSON) {
 
 	var room model.Room
 
+	room.P1Formation = 1
+	room.P2Formation = 2
+
 	D2GServer.JoinRoom("", userId, s)
 	fmt.Println(D2GServer.Rooms(""))
 
