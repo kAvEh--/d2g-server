@@ -22,13 +22,31 @@ func findMatch(s socketio.Conn, msg common.JSON) {
 	room.P1Formation = 1
 	room.P2Formation = 2
 
-	D2GServer.JoinRoom("", userId, s)
-	fmt.Println(D2GServer.Rooms(""))
+	fmt.Println("rooms:::: ", D2GServer.Rooms(""))
 
 	b, err := json.Marshal(room)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	D2GServer.BroadcastToRoom("", userId, "match-found", string(b))
+	s.Emit("match-found", string(b))
+}
+
+func ready(s socketio.Conn, msg common.JSON) {
+	userId := msg["playerId"].(string)
+	fmt.Println("Player is Ready-------->>", msg, userId)
+	var room model.Room
+
+	room.P1Formation = 1
+	room.P2Formation = 2
+	b, err := json.Marshal(room)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	s.Emit("startTheFuckinMatch", string(b))
+}
+
+func after(s socketio.Conn, msg common.JSON) {
+	fmt.Println("Player sends after-------->>", msg)
 }

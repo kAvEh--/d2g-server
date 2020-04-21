@@ -46,3 +46,6 @@ type Room struct {
 	GaolerPosition   int       `json:"gaoler_position"`
 	GameType         int       `json:"game_type"`
 }
+
+type GameState struct {
+}
