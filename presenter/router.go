@@ -43,6 +43,9 @@ func SetupSocket() *socketio.Server {
 	server.OnEvent("/", "find-match", findMatch)
 	server.OnEvent("/", "ready", ready)
 	server.OnEvent("/", "after", after)
+	server.OnEvent("/", "before", before)
+	server.OnEvent("/", "goal", goal)
+	server.OnEvent("/", "matchEnd", matchEnd)
 	server.OnError("/", func(s socketio.Conn, e error) {
 		fmt.Println("meet error:", e)
 	})

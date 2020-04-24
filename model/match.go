@@ -48,4 +48,9 @@ type Room struct {
 }
 
 type GameState struct {
+	PlayerID       uuid.UUID             `json:"playerId"`
+	BallPosition   []string              `json:"ballPosition"`
+	KeeperPosition []string              `json:"keeperPosition"`
+	PlayerPosition []map[string][]string `json:"playersPosition"`
+	Stamina        map[string]string     `json:"playersStamina"`
 }
