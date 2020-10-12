@@ -20,8 +20,8 @@ func findMatch(s socketio.Conn, msg common.JSON) {
 
 	var room model.Room
 
-	room.P1Formation = 1
-	room.P2Formation = 2
+	//room.P1Formation = 1
+	//room.P2Formation = 2
 
 	fmt.Println("rooms:::: ", D2GServer.Rooms(""))
 
@@ -38,8 +38,8 @@ func ready(s socketio.Conn, msg common.JSON) {
 	fmt.Println("Player is Ready-------->>", msg, userId)
 	var room model.Room
 
-	room.P1Formation = 1
-	room.P2Formation = 2
+	//room.P1Formation = 1
+	//room.P2Formation = 2
 	b, err := json.Marshal(room)
 	if err != nil {
 		fmt.Println(err)
